@@ -13,3 +13,9 @@ const validateUrl = (req, res, next) => {
         res.status(400).send('Sorry not found, you forgot to start your url with http:// or https://')
     }  
  }
+
+ transactions.use(validateUrl)
+
+ transactions.get('/', (req, res) => { 
+     res.status(200).json(transactionBook)
+  })
