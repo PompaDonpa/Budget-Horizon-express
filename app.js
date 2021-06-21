@@ -5,16 +5,17 @@ const cors = require("cors")
 
 // Configuration
 const app = express()
-const transactionsController = require('./controllers/transactionController.js')
+const transactionController = require('./controllers/transactionController.js')
 
 
 // Middleware
-app.use( (req, res, next) => { 
-    console.log(`[ Middleware is running! ]`)
+app.use((req,res,next) =>{
     next()
 })
-app.use(express.json())
+
+
 app.use(cors())
+app.use(express.json())
 
 
 
@@ -23,7 +24,7 @@ app.get("/", (req, res) =>{
     res.send('Budget - Horizon')
  })
 
- app.use("/transactions", transactionsController)
+ app.use("/transactions", transactionController)
 
  app.get("*", (req,res) => { 
      res.status(404).send('Page not found.')
