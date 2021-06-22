@@ -7,13 +7,7 @@ const cors = require("cors")
 const app = express()
 const transactionController = require('./controllers/transactionController.js')
 
-
-// Middleware
-app.use((req,res,next) =>{
-    next()
-})
-
-
+// MiddleWare
 app.use(cors())
 app.use(express.json())
 
