@@ -23,13 +23,9 @@ transactions.get('/', (req, res) => {
 
 transactions.get('/:id', (req, res) => { 
     const { id } = req.params
-    let idx = -1
-    transactionBook.forEach((item, index) =>{ 
-        if (item.id === id){
-            idx = index
-            return
-        }
-    })
+
+    const isIndex = (transaction) => transaction.id === id
+    const idx = transactionBook.findIndex(isIndex)
 
     if (transactionBook[idx]) {
         res.status(200).json(transactionBook[idx])
@@ -45,53 +41,43 @@ transactions.post('/', (req, res) => {
 
 transactions.put('/:id', (req, res) => { 
     let { id } = req.params
-    let idx = -1
-    transactionBook.forEach((item, index) =>{ 
-        if (item.id === id){
-            idx = index
-            return
-        }
-    })
+
+    const isIndex = (transaction) => transaction.id === id
+    const idx = transactionBook.findIndex(isIndex)
 
     if (idx > transactionBook.length - 1 ){ 
         res.status(400).send('Bad Request.!!')
-     }else{
+    }else{
         transactionBook.splice(idx, 1, req.body)
         res.status(200).json(transactionBook[idx])
-     }   
+    }   
 })
 
 transactions.delete('/:id', (req, res) => { 
     const  { id } = req.params
     let idArray = id.split(',')
     let deletedArray = []
-    let idx = -1
     let deletedTransaction = {}
-
+    
     if (idArray.length > 1 ){
-        idArray.forEach( arrayElement =>{ 
-        transactionBook.forEach((item, index) =>{ 
-            if (item.id === arrayElement){
-                idx = index
-                deletedTransaction = transactionBook.splice(idx, 1)
-                deletedArray.push(deletedTransaction)
-                return
-            }
+
+        idArray.forEach( idInArray =>{ 
+            const isIndex = (transaction) => transaction.id === idInArray
+            let idx = transactionBook.findIndex(isIndex)
+            deletedTransaction = transactionBook.splice(idx, 1)
+            deletedArray.push(...deletedTransaction)
         })
-    })
-    res.status(200).json(deletedArray)
-    } else if (idArray.length === 1) { 
-        transactionBook.forEach((item, index) =>{ 
-            if (item.id === id){
-                idx = index
-                deletedTransaction = transactionBook.splice(idx, 1)
-                res.status(200).json(deletedTransaction)
-                return
-            }
-        })
-    } else { 
+        res.status(200).json(deletedArray)
+    }else if (idArray.length === 1) { 
+
+        const isIndex = (transaction) => transaction.id === id
+        const idx = transactionBook.findIndex(isIndex)
+        
+        deletedTransaction = transactionBook.splice(idx, 1)
+        res.status(200).json(deletedTransaction)
+    }else { 
         res.status(400).send('Bad Request.!!')
-    }  
+    }     
 })
 
-  module.exports = transactions
+module.exports = transactions
