@@ -5,7 +5,6 @@ module.exports = [
         from: "Uber Technologies Inc.",
         flag: "Income",
         date: "5/01/2021",
-        notes: "First payment of the month",
         id: "98d01131-a81c-48fa-9a6e-b07087a4772a"
      },
      { 
@@ -14,7 +13,6 @@ module.exports = [
         from: "Bed Bath & Beyond",
         flag: "Purchase",
         date: "5/01/2021",
-        notes: "Ninja blender for Mom!",
         id: "c8014435-3194-4f58-9cb2-45a7c6f0846c"
      },
      { 
@@ -23,7 +21,6 @@ module.exports = [
         amount: -91.52,
         from: "Con Eddison of New York",
         flag: "Utility",
-        notes: "Electricity bill of May",
         id: "35b8e73f-1f79-4e35-8abe-6cfa39d03a10"
      },
      { 
@@ -32,7 +29,6 @@ module.exports = [
         amount: -28.02,
         from: "National Grid New York",
         flag: "Utility",
-        notes: "Gas bill of May",
         id: "60580116-da20-41d7-aea4-7620ad6e4f9f"
      },
      { 
@@ -41,7 +37,6 @@ module.exports = [
         amount: 510,
         from: "Uber Technologies Inc.",
         flag: "Income",
-        notes: "Second payment of the month",
         id:"d0eea17f-2649-484e-accf-0d770112e314"
      },
  ]
